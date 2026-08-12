@@ -8,11 +8,11 @@
 		<version>4.1.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.tidyup</groupId>
-	<artifactId>StockService</artifactId>
+	<groupId>com.tidyup.StockService</groupId>
+	<artifactId>TidyUpStockService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>TidyUpStockService</name>
+	<description>Microservice for stock management</description>
 	<url/>
 	<licenses>
 		<license/>
