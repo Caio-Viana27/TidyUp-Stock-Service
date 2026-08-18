@@ -21,12 +21,12 @@ public class ProductCategoryService {
         return new DetailedProductCategoryDTO(categoryEntity);
     }
 
-    public Page<ProductCategoryDTO> getAll(Pageable pageable) {
-        return categoryRepository.findAll(pageable).map(ProductCategoryDTO::new);
+    public Page<DetailedProductCategoryDTO> getAll(Pageable pageable) {
+        return categoryRepository.findAll(pageable).map(DetailedProductCategoryDTO::new);
     }
 
-    public ProductCategoryDTO getById(Long id) {
-        return categoryRepository.findById(id).map(ProductCategoryDTO::new).orElseThrow(EntityNotFoundException::new);
+    public DetailedProductCategoryDTO getById(Long id) {
+        return categoryRepository.findById(id).map(DetailedProductCategoryDTO::new).orElseThrow(EntityNotFoundException::new);
     }
 
     public DetailedProductCategoryDTO update(Long id, ProductCategoryDTO productCategory) {

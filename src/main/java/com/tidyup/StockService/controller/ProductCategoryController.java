@@ -33,13 +33,13 @@ public class ProductCategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductCategoryDTO>> getProductCategories(@PageableDefault(size = 20) Pageable pageable) {
-        Page<ProductCategoryDTO> page = categoryService.getAll(pageable);
+    public ResponseEntity<Page<DetailedProductCategoryDTO>> getProductCategories(@PageableDefault(size = 20) Pageable pageable) {
+        Page<DetailedProductCategoryDTO> page = categoryService.getAll(pageable);
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductCategoryDTO> getProductCategory(@PathVariable Long id) {
+    public ResponseEntity<DetailedProductCategoryDTO> getProductCategory(@PathVariable Long id) {
         return ResponseEntity.ok(categoryService.getById(id));
     }
 

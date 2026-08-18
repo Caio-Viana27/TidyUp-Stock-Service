@@ -27,13 +27,13 @@ public record UpdateProductDTO(
         Integer inventory,
 
         @NotNull
-        ProductStatusDTO status,
+        DetailedProductStatusDTO status,
 
         @NotNull
-        SimpleBrandDTO brand,
+        DetailedBrandDTO brand,
 
         @NotNull
-        List<ProductCategoryDTO> categoryList,
+        List<DetailedProductCategoryDTO> categoryList,
 
         @NotNull
         LocalDateTime updatedAt
@@ -44,9 +44,9 @@ public record UpdateProductDTO(
              product.getDescription(),
              product.getPrice(),
              product.getInventory(),
-             new ProductStatusDTO(product.getStatus()),
-             new SimpleBrandDTO(product.getBrand()),
-             product.getProductCategoryList().stream().map(ProductCategoryDTO::new).toList(),
+             new DetailedProductStatusDTO(product.getStatus()),
+             new DetailedBrandDTO(product.getBrand()),
+             product.getProductCategoryList().stream().map(DetailedProductCategoryDTO::new).toList(),
              product.getUpdatedAt()
         );
     }

@@ -9,6 +9,7 @@ com/tidyup/StockService/StockServiceApplication.class
 com/tidyup/StockService/infrastruture/exception/ProductExceptionHandler.class
 com/tidyup/StockService/Service/ProductCategoryService.class
 com/tidyup/StockService/controller/ProductCategoryController.class
+com/tidyup/StockService/domain/product/dto/DetailedBrandDTO.class
 com/tidyup/StockService/domain/product/entity/Product.class
 com/tidyup/StockService/domain/product/dto/ProductStatusDTO.class
 com/tidyup/StockService/domain/product/dto/CreateProductDTO.class

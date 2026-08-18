@@ -13,6 +13,7 @@
 /home/caioviana/Projects/TidyUp/TidyUp-Stock-Service/src/main/java/com/tidyup/StockService/controller/ProductStatusController.java
 /home/caioviana/Projects/TidyUp/TidyUp-Stock-Service/src/main/java/com/tidyup/StockService/domain/product/dto/BrandDTO.java
 /home/caioviana/Projects/TidyUp/TidyUp-Stock-Service/src/main/java/com/tidyup/StockService/domain/product/dto/CreateProductDTO.java
+/home/caioviana/Projects/TidyUp/TidyUp-Stock-Service/src/main/java/com/tidyup/StockService/domain/product/dto/DetailedBrandDTO.java
 /home/caioviana/Projects/TidyUp/TidyUp-Stock-Service/src/main/java/com/tidyup/StockService/domain/product/dto/DetailedProductCategoryDTO.java
 /home/caioviana/Projects/TidyUp/TidyUp-Stock-Service/src/main/java/com/tidyup/StockService/domain/product/dto/DetailedProductDTO.java
 /home/caioviana/Projects/TidyUp/TidyUp-Stock-Service/src/main/java/com/tidyup/StockService/domain/product/dto/DetailedProductStatusDTO.java

@@ -26,13 +26,13 @@ public record SimpleProductDTO(
         Integer inventory,
 
         @NotNull
-        ProductStatusDTO status,
+        DetailedProductStatusDTO status,
 
         @NotNull
-        SimpleBrandDTO brand,
+        DetailedBrandDTO brand,
 
         @NotNull
-        List<ProductCategoryDTO> categoryList
+        List<DetailedProductCategoryDTO> categoryList
 ) {
     public SimpleProductDTO(Product product) {
         this(product.getSKU(),
@@ -40,9 +40,9 @@ public record SimpleProductDTO(
              product.getDescription(),
              product.getPrice(),
              product.getInventory(),
-             new ProductStatusDTO(product.getStatus()),
-             new SimpleBrandDTO(product.getBrand()),
-             product.getProductCategoryList().stream().map(ProductCategoryDTO::new).toList()
+             new DetailedProductStatusDTO(product.getStatus()),
+             new DetailedBrandDTO(product.getBrand()),
+             product.getProductCategoryList().stream().map(DetailedProductCategoryDTO::new).toList()
         );
     }
 }
