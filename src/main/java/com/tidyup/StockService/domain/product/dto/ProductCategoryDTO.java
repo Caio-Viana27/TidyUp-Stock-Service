@@ -6,12 +6,9 @@ import jakarta.validation.constraints.NotNull;
 
 public record ProductCategoryDTO(
         @NotNull
-        Long id,
-
-        @NotNull
         Category category
 ) {
     public ProductCategoryDTO(ProductCategory productCategory) {
-        this(productCategory.getId(), productCategory.getCategory());
+        this(productCategory.getCategory());
     }
 }

@@ -1,5 +1,6 @@
 package com.tidyup.StockService.domain.product.entity;
 
+import com.tidyup.StockService.domain.product.dto.DetailedProductCategoryDTO;
 import com.tidyup.StockService.domain.product.dto.ProductCategoryDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,10 @@ public class ProductCategory {
     private Category category;
 
     public ProductCategory(ProductCategoryDTO dto) {
+        this.category = dto.category();
+    }
+
+    public ProductCategory(DetailedProductCategoryDTO dto) {
         this.id = dto.id();
         this.category = dto.category();
     }
@@ -32,7 +37,7 @@ public class ProductCategory {
         this.category = productCategory.category();
     }
 
-    public boolean equals(ProductCategoryDTO dto) {
+    public boolean equals(DetailedProductCategoryDTO dto) {
         return this.id.equals(dto.id()) && this.category.equals(dto.category());
     }
 }

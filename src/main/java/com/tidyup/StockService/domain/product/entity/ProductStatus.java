@@ -1,5 +1,6 @@
 package com.tidyup.StockService.domain.product.entity;
 
+import com.tidyup.StockService.domain.product.dto.DetailedProductStatusDTO;
 import com.tidyup.StockService.domain.product.dto.ProductStatusDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,12 +28,17 @@ public class ProductStatus {
         this.status = dto.status();
     }
 
+    public ProductStatus(DetailedProductStatusDTO dto) {
+        this.id = dto.id();
+        this.status = dto.status();
+    }
+
     public void update(ProductStatusDTO dto) {
         /*StatusValue value = StatusValue.valueOf(dto.status().name());*/
         this.status = dto.status();
     }
 
-    public boolean equals(ProductStatusDTO dto) {
+    public boolean equals(DetailedProductStatusDTO dto) {
         return this.id.equals(dto.id()) && this.status.equals(dto.status());
     }
 }

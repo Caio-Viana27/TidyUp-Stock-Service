@@ -2,6 +2,7 @@ package com.tidyup.StockService.Service;
 
 import com.tidyup.StockService.Repository.BrandRepository;
 import com.tidyup.StockService.domain.product.dto.BrandDTO;
+import com.tidyup.StockService.domain.product.dto.DetailedBrandDTO;
 import com.tidyup.StockService.domain.product.entity.Brand;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -16,23 +17,23 @@ public class BrandService {
     @Autowired
     private BrandRepository brandRepository;
 
-    public BrandDTO create(@Valid BrandDTO brandDTO) {
+    public DetailedBrandDTO create(@Valid BrandDTO brandDTO) {
         var brandEntity = brandRepository.save(new Brand(brandDTO));
-        return new BrandDTO(brandEntity);
+        return new DetailedBrandDTO(brandEntity);
     }
 
-    public Page<BrandDTO> getAll(Pageable pageable) {
-        return brandRepository.findAll(pageable).map(BrandDTO::new);
+    public Page<DetailedBrandDTO> getAll(Pageable pageable) {
+        return brandRepository.findAll(pageable).map(DetailedBrandDTO::new);
     }
 
-    public BrandDTO getById(Long id) {
-        return brandRepository.findById(id).map(BrandDTO::new).orElseThrow(EntityNotFoundException::new);
+    public DetailedBrandDTO getById(Long id) {
+        return brandRepository.findById(id).map(DetailedBrandDTO::new).orElseThrow(EntityNotFoundException::new);
     }
 
-    public BrandDTO update(Long id, @Valid BrandDTO brandDTO) {
+    public DetailedBrandDTO update(Long id, @Valid DetailedBrandDTO detailedBrandDTO) {
         Brand brand = brandRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        brand.update(brandDTO);
-        return new BrandDTO(brand);
+        brand.update(detailedBrandDTO);
+        return new DetailedBrandDTO(brand);
     }
 
     public void delete(Long id) {

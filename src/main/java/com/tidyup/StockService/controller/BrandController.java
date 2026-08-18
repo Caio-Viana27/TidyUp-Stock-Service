@@ -2,6 +2,7 @@ package com.tidyup.StockService.controller;
 
 import com.tidyup.StockService.Service.BrandService;
 import com.tidyup.StockService.domain.product.dto.BrandDTO;
+import com.tidyup.StockService.domain.product.dto.DetailedBrandDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,28 +26,28 @@ public class BrandController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity<BrandDTO> createBrand(@RequestBody @Valid BrandDTO brand, UriComponentsBuilder uriBuilder) {
-        BrandDTO createdBrand = brandService.create(brand);
+    public ResponseEntity<DetailedBrandDTO> createBrand(@RequestBody @Valid BrandDTO brand, UriComponentsBuilder uriBuilder) {
+        DetailedBrandDTO createdBrand = brandService.create(brand);
         URI location = uriBuilder.path(URI_BASE + "/{id}").buildAndExpand(createdBrand.id()).toUri();
         return ResponseEntity.created(location).body(createdBrand);
     }
 
     @GetMapping
-    public ResponseEntity<Page<BrandDTO>> getBrands(@PageableDefault(size = 20) Pageable pageable) {
-        Page<BrandDTO> page = brandService.getAll(pageable);
+    public ResponseEntity<Page<DetailedBrandDTO>> getBrands(@PageableDefault(size = 20) Pageable pageable) {
+        Page<DetailedBrandDTO> page = brandService.getAll(pageable);
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BrandDTO> getBrand(@PathVariable Long id) {
-        BrandDTO brand = brandService.getById(id);
+    public ResponseEntity<DetailedBrandDTO> getBrand(@PathVariable Long id) {
+        DetailedBrandDTO brand = brandService.getById(id);
         return ResponseEntity.ok(brand);
     }
 
     @Transactional
     @PutMapping("/{id}")
-    public ResponseEntity<BrandDTO> updateBrand(@PathVariable Long id, @RequestBody @Valid BrandDTO brandDTO) {
-        BrandDTO updatedBrand = brandService.update(id, brandDTO);
+    public ResponseEntity<DetailedBrandDTO> updateBrand(@PathVariable Long id, @RequestBody @Valid DetailedBrandDTO detailedBrandDTO) {
+        DetailedBrandDTO updatedBrand = brandService.update(id, detailedBrandDTO);
         return ResponseEntity.ok(updatedBrand);
     }
 

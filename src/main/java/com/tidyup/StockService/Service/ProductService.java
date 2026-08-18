@@ -60,7 +60,7 @@ public class ProductService {
         return new DetailedProductDTO(product);
     }
 
-    public DetailedProductDTO update(UUID id, ProductStatusDTO dto) {
+    public DetailedProductDTO update(UUID id, DetailedProductStatusDTO dto) {
         Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         ProductStatus productStatus = validateProductStatus(dto);
         product.update(productStatus);
@@ -68,7 +68,7 @@ public class ProductService {
         return new DetailedProductDTO(product);
     }
 
-    public DetailedProductDTO update(UUID id, List<ProductCategoryDTO> dtoList) {
+    public DetailedProductDTO update(UUID id, List<DetailedProductCategoryDTO> dtoList) {
         Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         List<ProductCategory> entityList = validateProductCategoryList(dtoList);
         product.update(entityList);
@@ -81,7 +81,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    private Brand validateBrand(BrandDTO dto) {
+    private Brand validateBrand(DetailedBrandDTO dto) {
         Optional<Brand> brandOptional = brandRepository.findById(dto.id());
 
         if (brandOptional.isEmpty())
@@ -93,7 +93,7 @@ public class ProductService {
         return brandEntity;
     }
 
-    private List<ProductCategory> validateProductCategoryList(List<ProductCategoryDTO> list) {
+    private List<ProductCategory> validateProductCategoryList(List<DetailedProductCategoryDTO> list) {
         List<ProductCategory> validProductCategoryEntities = new ArrayList<>();
 
         list.forEach(productCategoryDTO -> {
@@ -110,7 +110,7 @@ public class ProductService {
         return validProductCategoryEntities;
     }
 
-    private ProductStatus validateProductStatus(ProductStatusDTO dto) {
+    private ProductStatus validateProductStatus(DetailedProductStatusDTO dto) {
         Optional<ProductStatus> productStatusOptional = productStatusRepository.findById(dto.id());
 
         if (productStatusOptional.isEmpty())

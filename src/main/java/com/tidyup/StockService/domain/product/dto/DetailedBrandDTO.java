@@ -7,7 +7,10 @@ import jakarta.validation.constraints.Size;
 
 import java.util.UUID;
 
-public record BrandDTO(
+public record DetailedBrandDTO(
+        @NotNull
+        Long id,
+
         @NotNull
         UUID retailerId,
 
@@ -15,7 +18,7 @@ public record BrandDTO(
         @Size(max = 50)
         String brand
 ) {
-    public BrandDTO(Brand brand) {
-        this(brand.getRetailerId(), brand.getBrand());
-    }
+        public DetailedBrandDTO(Brand brand) {
+                this(brand.getId(), brand.getRetailerId(), brand.getBrand());
+        }
 }

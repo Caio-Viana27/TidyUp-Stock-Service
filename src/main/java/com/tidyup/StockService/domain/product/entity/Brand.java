@@ -1,6 +1,7 @@
 package com.tidyup.StockService.domain.product.entity;
 
 import com.tidyup.StockService.domain.product.dto.BrandDTO;
+import com.tidyup.StockService.domain.product.dto.DetailedBrandDTO;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -32,12 +33,17 @@ public class Brand {
         this.brand = dto.brand();
     }
 
-    public void update(@Valid BrandDTO brandDTO) {
-        this.retailerId = brandDTO.retailerId();
-        this.brand = brandDTO.brand();
+    public Brand(DetailedBrandDTO dto) {
+        this.retailerId = dto.retailerId();
+        this.brand = dto.brand();
     }
 
-    public boolean equals(BrandDTO dto) {
+    public void update(@Valid DetailedBrandDTO detailedBrandDTO) {
+        this.retailerId = detailedBrandDTO.retailerId();
+        this.brand = detailedBrandDTO.brand();
+    }
+
+    public boolean equals(DetailedBrandDTO dto) {
         return this.id.compareTo(dto.id()) == 0 && this.retailerId.compareTo(dto.retailerId()) == 0 && this.brand.equals(dto.brand());
     }
 }

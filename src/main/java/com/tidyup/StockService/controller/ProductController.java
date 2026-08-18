@@ -53,13 +53,13 @@ public class ProductController {
     }
 
     @PatchMapping("/{id}/status")
-    public ResponseEntity<DetailedProductDTO> updateProductStatus(@PathVariable UUID id, @RequestBody @Valid ProductStatusDTO data) {
+    public ResponseEntity<DetailedProductDTO> updateProductStatus(@PathVariable UUID id, @RequestBody @Valid DetailedProductStatusDTO data) {
         DetailedProductDTO product = productService.update(id, data);
         return ResponseEntity.ok(product);
     }
 
     @PatchMapping("/{id}/categories")
-    public ResponseEntity<DetailedProductDTO> updateProductStatus(@PathVariable UUID id, @RequestBody @Valid List<ProductCategoryDTO> data) {
+    public ResponseEntity<DetailedProductDTO> updateProductStatus(@PathVariable UUID id, @RequestBody @Valid List<DetailedProductCategoryDTO> data) {
         DetailedProductDTO product = productService.update(id, data);
         return ResponseEntity.ok(product);
     }

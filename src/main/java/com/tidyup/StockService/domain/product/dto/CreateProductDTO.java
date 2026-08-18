@@ -29,12 +29,12 @@ public record CreateProductDTO(
         Integer inventory,
 
         @NotNull
-        ProductStatusDTO status,
+        DetailedProductStatusDTO status,
 
         @NotNull
-        BrandDTO brand,
+        DetailedBrandDTO brand,
 
         @NotNull
-        List<ProductCategoryDTO> categoriesList
+        List<DetailedProductCategoryDTO> categoriesList
 ) {
 }
