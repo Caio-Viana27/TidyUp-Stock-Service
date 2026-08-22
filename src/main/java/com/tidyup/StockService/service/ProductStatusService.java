@@ -1,6 +1,6 @@
-package com.tidyup.StockService.Service;
+package com.tidyup.StockService.service;
 
-import com.tidyup.StockService.Repository.ProductStatusRepository;
+import com.tidyup.StockService.repository.ProductStatusRepository;
 import com.tidyup.StockService.domain.product.dto.DetailedProductStatusDTO;
 import com.tidyup.StockService.domain.product.dto.ProductStatusDTO;
 import com.tidyup.StockService.domain.product.entity.ProductStatus;

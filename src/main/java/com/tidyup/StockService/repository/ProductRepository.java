@@ -1,4 +1,4 @@
-package com.tidyup.StockService.Repository;
+package com.tidyup.StockService.repository;
 
 import com.tidyup.StockService.domain.product.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,6 @@
 package com.tidyup.StockService.controller;
 
-import com.tidyup.StockService.Service.BrandService;
+import com.tidyup.StockService.service.BrandService;
 import com.tidyup.StockService.domain.product.dto.BrandDTO;
 import com.tidyup.StockService.domain.product.dto.DetailedBrandDTO;
 import jakarta.validation.Valid;

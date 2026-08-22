@@ -1,6 +1,6 @@
-package com.tidyup.StockService.Service;
+package com.tidyup.StockService.service;
 
-import com.tidyup.StockService.Repository.ProductCategoryRepository;
+import com.tidyup.StockService.repository.ProductCategoryRepository;
 import com.tidyup.StockService.domain.product.dto.DetailedProductCategoryDTO;
 import com.tidyup.StockService.domain.product.dto.ProductCategoryDTO;
 import com.tidyup.StockService.domain.product.entity.ProductCategory;

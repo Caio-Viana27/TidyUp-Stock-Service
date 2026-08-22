@@ -1,6 +1,6 @@
 package com.tidyup.StockService.controller;
 
-import com.tidyup.StockService.Service.ProductStatusService;
+import com.tidyup.StockService.service.ProductStatusService;
 import com.tidyup.StockService.domain.product.dto.DetailedProductStatusDTO;
 import com.tidyup.StockService.domain.product.dto.ProductStatusDTO;
 import jakarta.validation.Valid;

@@ -1,9 +1,9 @@
-package com.tidyup.StockService.Service;
+package com.tidyup.StockService.service;
 
-import com.tidyup.StockService.Repository.BrandRepository;
-import com.tidyup.StockService.Repository.ProductCategoryRepository;
-import com.tidyup.StockService.Repository.ProductRepository;
-import com.tidyup.StockService.Repository.ProductStatusRepository;
+import com.tidyup.StockService.repository.BrandRepository;
+import com.tidyup.StockService.repository.ProductCategoryRepository;
+import com.tidyup.StockService.repository.ProductRepository;
+import com.tidyup.StockService.repository.ProductStatusRepository;
 import com.tidyup.StockService.domain.product.dto.*;
 import com.tidyup.StockService.domain.product.entity.Brand;
 import com.tidyup.StockService.domain.product.entity.Product;

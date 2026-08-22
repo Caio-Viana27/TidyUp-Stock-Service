@@ -1,6 +1,6 @@
-package com.tidyup.StockService.Service;
+package com.tidyup.StockService.service;
 
-import com.tidyup.StockService.Repository.BrandRepository;
+import com.tidyup.StockService.repository.BrandRepository;
 import com.tidyup.StockService.domain.product.dto.BrandDTO;
 import com.tidyup.StockService.domain.product.dto.DetailedBrandDTO;
 import com.tidyup.StockService.domain.product.entity.Brand;
