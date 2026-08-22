@@ -13,7 +13,7 @@ public record CreateProductDTO(
         @NotNull
         UUID retailerId,
 
-        @NotBlank @Size(max = 20)
+        @NotBlank @Size(max = 30)
         String SKU,
 
         @NotBlank @Size(max = 100)

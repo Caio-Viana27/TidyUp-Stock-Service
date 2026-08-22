@@ -8,8 +8,12 @@ import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
-public record SimpleProductDTO(
+public record ListProductDTO(
+        @NotNull
+        UUID id,
+
         @NotBlank @Size(max = 20)
         String SKU,
 
@@ -34,15 +38,16 @@ public record SimpleProductDTO(
         @NotNull
         List<DetailedProductCategoryDTO> categoryList
 ) {
-    public SimpleProductDTO(Product product) {
-        this(product.getSKU(),
-             product.getName(),
-             product.getDescription(),
-             product.getPrice(),
-             product.getInventory(),
-             new DetailedProductStatusDTO(product.getStatus()),
-             new DetailedBrandDTO(product.getBrand()),
-             product.getProductCategoryList().stream().map(DetailedProductCategoryDTO::new).toList()
+    public ListProductDTO(Product product) {
+        this(product.getId(),
+                product.getSKU(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getInventory(),
+                new DetailedProductStatusDTO(product.getStatus()),
+                new DetailedBrandDTO(product.getBrand()),
+                product.getProductCategoryList().stream().map(DetailedProductCategoryDTO::new).toList()
         );
     }
 }

@@ -37,43 +37,43 @@ public class ProductService {
     @Autowired
     private ProductStatusRepository productStatusRepository;
 
-    public DetailedProductDTO create(CreateProductDTO dto) {
+    public ProductCreatedDTO create(CreateProductDTO dto) {
         var product = new Product(dto);
         product.setBrand(validateBrand(dto.brand()));
         product.setProductCategoryList(validateProductCategoryList(dto.categoriesList()));
         product.setStatus(validateProductStatus(dto.status()));
         var productEntity = productRepository.save(product);
-        return new DetailedProductDTO(productEntity);
+        return new ProductCreatedDTO(productEntity);
     }
 
-    public Page<SimpleProductDTO> getAll(Pageable pageable) {
-        return productRepository.findAll(pageable).map(SimpleProductDTO::new);
+    public Page<ListProductDTO> getAll(Pageable pageable) {
+        return productRepository.findAll(pageable).map(ListProductDTO::new);
     }
 
-    public SimpleProductDTO getById(UUID id) {
-        return productRepository.findById(id).map(SimpleProductDTO::new).orElseThrow(EntityNotFoundException::new);
+    public ListProductDTO getById(UUID id) {
+        return productRepository.findById(id).map(ListProductDTO::new).orElseThrow(EntityNotFoundException::new);
     }
 
-    public DetailedProductDTO update(UUID id, UpdateProductDTO dto) {
+    public ProductUpdatedDTO update(UUID id, UpdateProductDTO dto) {
         Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         product.update(dto);
-        return new DetailedProductDTO(product);
+        return new ProductUpdatedDTO(product);
     }
 
-    public DetailedProductDTO update(UUID id, DetailedProductStatusDTO dto) {
+    public ProductUpdatedDTO update(UUID id, DetailedProductStatusDTO dto) {
         Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         ProductStatus productStatus = validateProductStatus(dto);
         product.update(productStatus);
         productRepository.saveAndFlush(product);
-        return new DetailedProductDTO(product);
+        return new ProductUpdatedDTO(product);
     }
 
-    public DetailedProductDTO update(UUID id, List<DetailedProductCategoryDTO> dtoList) {
+    public ProductUpdatedDTO update(UUID id, List<DetailedProductCategoryDTO> dtoList) {
         Product product = productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         List<ProductCategory> entityList = validateProductCategoryList(dtoList);
         product.update(entityList);
         productRepository.saveAndFlush(product);
-        return new DetailedProductDTO(product);
+        return new ProductUpdatedDTO(product);
     }
 
     public void delete(UUID id) {

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public record DetailedProductDTO(
+public record ProductUpdatedDTO(
         @NotNull
         UUID Id,
 
@@ -43,12 +43,9 @@ public record DetailedProductDTO(
         List<DetailedProductCategoryDTO> categoryList,
 
         @NotNull
-        LocalDateTime createdAt,
-
-        @NotNull
         LocalDateTime updatedAt
 ) {
-    public DetailedProductDTO(Product product) {
+    public ProductUpdatedDTO(Product product) {
         this(product.getId(),
                 product.getRetailerId(),
                 product.getSKU(),
@@ -59,7 +56,6 @@ public record DetailedProductDTO(
                 new DetailedProductStatusDTO(product.getStatus()),
                 new DetailedBrandDTO(product.getBrand()),
                 product.getProductCategoryList().stream().map(DetailedProductCategoryDTO::new).toList(),
-                product.getCreatedAt(),
                 product.getUpdatedAt()
         );
     }
