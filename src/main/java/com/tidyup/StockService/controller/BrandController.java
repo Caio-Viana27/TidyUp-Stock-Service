@@ -5,6 +5,7 @@ import com.tidyup.StockService.domain.product.dto.BrandDTO;
 import com.tidyup.StockService.domain.product.dto.DetailedBrandDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -22,13 +23,14 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
-    private final String URI_BASE = "http://localhost:8080/brands";
+    @Value("${service.address}")
+    private String URI_BASE;
 
     @Transactional
     @PostMapping
     public ResponseEntity<DetailedBrandDTO> createBrand(@RequestBody @Valid BrandDTO brand, UriComponentsBuilder uriBuilder) {
         DetailedBrandDTO createdBrand = brandService.create(brand);
-        URI location = uriBuilder.path(URI_BASE + "/{id}").buildAndExpand(createdBrand.id()).toUri();
+        URI location = uriBuilder.path(URI_BASE + "/brands" + "/{id}").buildAndExpand(createdBrand.id()).toUri();
         return ResponseEntity.created(location).body(createdBrand);
     }
 

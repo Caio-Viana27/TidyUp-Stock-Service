@@ -5,6 +5,7 @@ import com.tidyup.StockService.domain.product.dto.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -20,7 +21,8 @@ import java.util.UUID;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final String URI_BASE = "http://localhost:8080/products";
+    @Value("${service.address}")
+    private String URI_BASE;
 
     @Autowired
     private ProductService productService;
@@ -29,7 +31,7 @@ public class ProductController {
     @Transactional
     public ResponseEntity<DetailedProductDTO> createProduct(@RequestBody @Valid CreateProductDTO productData, UriComponentsBuilder uriBuilder) {
         DetailedProductDTO product = productService.create(productData);
-        URI uri = uriBuilder.path(URI_BASE + "/{id}").buildAndExpand(product.Id()).toUri();
+        URI uri = uriBuilder.path(URI_BASE + "/products" + "/{id}").buildAndExpand(product.Id()).toUri();
         return ResponseEntity.created(uri).body(product);
     }
 

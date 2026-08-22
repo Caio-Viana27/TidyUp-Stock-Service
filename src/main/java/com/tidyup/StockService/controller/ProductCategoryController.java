@@ -5,6 +5,7 @@ import com.tidyup.StockService.domain.product.dto.DetailedProductCategoryDTO;
 import com.tidyup.StockService.domain.product.dto.ProductCategoryDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -19,7 +20,8 @@ import java.net.URI;
 @RequestMapping("/categories")
 public class ProductCategoryController {
 
-    private final String URI_BASE = "http://localhost:8080/categories";
+    @Value("${service.address}")
+    private String URI_BASE;
 
     @Autowired
     private ProductCategoryService categoryService;
@@ -28,7 +30,7 @@ public class ProductCategoryController {
     @PostMapping
     public ResponseEntity<DetailedProductCategoryDTO> createProductCategory(@RequestBody @Valid ProductCategoryDTO productCategory, UriComponentsBuilder uriBuilder) {
         DetailedProductCategoryDTO createdCategory = categoryService.create(productCategory);
-        URI location = uriBuilder.path(URI_BASE + "/{id}").buildAndExpand(createdCategory.id()).toUri();
+        URI location = uriBuilder.path(URI_BASE + "/categories" + "/{id}").buildAndExpand(createdCategory.id()).toUri();
         return ResponseEntity.created(location).body(createdCategory);
     }
 

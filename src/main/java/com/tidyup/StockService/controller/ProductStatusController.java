@@ -5,6 +5,7 @@ import com.tidyup.StockService.domain.product.dto.DetailedProductStatusDTO;
 import com.tidyup.StockService.domain.product.dto.ProductStatusDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -19,7 +20,8 @@ import java.net.URI;
 @RequestMapping("/status")
 public class ProductStatusController {
 
-    private final String BASE_URI = "http://localhost:8080/status";
+    @Value("${service.address}")
+    private String BASE_URI;
 
     @Autowired
     private ProductStatusService productStatusService;
@@ -28,7 +30,7 @@ public class ProductStatusController {
     @PostMapping
     public ResponseEntity<DetailedProductStatusDTO> createProductStatus(@RequestBody @Valid ProductStatusDTO dto, UriComponentsBuilder uriComponentsBuilder) {
         DetailedProductStatusDTO createProductStatus = productStatusService.create(dto);
-        URI location = uriComponentsBuilder.path(BASE_URI + "/{id}").buildAndExpand(createProductStatus.id()).toUri();
+        URI location = uriComponentsBuilder.path(BASE_URI + "/status" + "/{id}").buildAndExpand(createProductStatus.id()).toUri();
         return ResponseEntity.created(location).body(createProductStatus);
     }
 
@@ -52,7 +54,7 @@ public class ProductStatusController {
     }
 
     @Transactional
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteProductStatus(@PathVariable Long id) {
         productStatusService.delete(id);
         return ResponseEntity.noContent().build();
