@@ -1,4 +1,4 @@
-package com.tidyup.StockService.infrastruture.exception;
+package com.tidyup.StockService.infrastructure.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.UnexpectedTypeException;

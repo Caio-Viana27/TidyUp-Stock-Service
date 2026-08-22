@@ -1,4 +1,4 @@
-package com.tidyup.StockService.infrastruture.exception;
+package com.tidyup.StockService.infrastructure.exception;
 
 import lombok.NoArgsConstructor;
 
