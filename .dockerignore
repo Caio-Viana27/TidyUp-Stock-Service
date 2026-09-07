@@ -1,0 +1,32 @@
+# --- Version Control ---
+.git/
+.gitignore
+
+# --- Build Artifacts & Output ---
+**/target/
+**/build/
+**/out/
+*.jar
+*.war
+
+# --- Local Configurations & Environments ---
+.env
+.env.*
+secrets.dev.yaml
+
+# --- IDEs & Editor Metadata ---
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+*.swp
+
+# --- Logs & Temp Files ---
+*.log
+**/logs/
+hs_err_pid*
+
+# --- Others ---
+*.out
