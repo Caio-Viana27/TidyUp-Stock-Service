@@ -24,14 +24,11 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
-    @Value("${service.address}")
-    private String URI_BASE;
-
     @Transactional
     @PostMapping
     public ResponseEntity<DetailedBrandDTO> createBrand(@RequestBody @Valid BrandDTO brand, UriComponentsBuilder uriBuilder) {
         DetailedBrandDTO createdBrand = brandService.create(brand);
-        URI location = uriBuilder.path(URI_BASE + "/brands" + "/{id}").buildAndExpand(createdBrand.id()).toUri();
+        URI location = uriBuilder.path("/brands" + "/{id}").buildAndExpand(createdBrand.id()).toUri();
         return ResponseEntity.created(location).body(createdBrand);
     }
 

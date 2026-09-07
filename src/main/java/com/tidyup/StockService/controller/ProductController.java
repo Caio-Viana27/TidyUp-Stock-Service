@@ -22,9 +22,6 @@ import java.util.UUID;
 @RequestMapping("/products")
 public class ProductController {
 
-    @Value("${service.address}")
-    private String URI_BASE;
-
     @Autowired
     private ProductService productService;
 
@@ -32,7 +29,7 @@ public class ProductController {
     @Transactional
     public ResponseEntity<ProductCreatedDTO> createProduct(@RequestBody @Valid CreateProductDTO productData, UriComponentsBuilder uriBuilder) {
         ProductCreatedDTO product = productService.create(productData);
-        URI uri = uriBuilder.path(URI_BASE + "/products" + "/{id}").buildAndExpand(product.Id()).toUri();
+        URI uri = uriBuilder.path("/products" + "/{id}").buildAndExpand(product.Id()).toUri();
         return ResponseEntity.created(uri).body(product);
     }
 

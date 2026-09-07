@@ -21,9 +21,6 @@ import java.net.URI;
 @RequestMapping("/categories")
 public class ProductCategoryController {
 
-    @Value("${service.address}")
-    private String URI_BASE;
-
     @Autowired
     private ProductCategoryService categoryService;
 
@@ -31,7 +28,7 @@ public class ProductCategoryController {
     @PostMapping
     public ResponseEntity<DetailedProductCategoryDTO> createProductCategory(@RequestBody @Valid ProductCategoryDTO productCategory, UriComponentsBuilder uriBuilder) {
         DetailedProductCategoryDTO createdCategory = categoryService.create(productCategory);
-        URI location = uriBuilder.path(URI_BASE + "/categories" + "/{id}").buildAndExpand(createdCategory.id()).toUri();
+        URI location = uriBuilder.path("/categories" + "/{id}").buildAndExpand(createdCategory.id()).toUri();
         return ResponseEntity.created(location).body(createdCategory);
     }
 

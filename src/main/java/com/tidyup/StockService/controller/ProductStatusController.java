@@ -21,9 +21,6 @@ import java.net.URI;
 @RequestMapping("/status")
 public class ProductStatusController {
 
-    @Value("${service.address}")
-    private String BASE_URI;
-
     @Autowired
     private ProductStatusService productStatusService;
 
@@ -31,7 +28,7 @@ public class ProductStatusController {
     @PostMapping
     public ResponseEntity<DetailedProductStatusDTO> createProductStatus(@RequestBody @Valid ProductStatusDTO dto, UriComponentsBuilder uriComponentsBuilder) {
         DetailedProductStatusDTO createProductStatus = productStatusService.create(dto);
-        URI location = uriComponentsBuilder.path(BASE_URI + "/status" + "/{id}").buildAndExpand(createProductStatus.id()).toUri();
+        URI location = uriComponentsBuilder.path("/status" + "/{id}").buildAndExpand(createProductStatus.id()).toUri();
         return ResponseEntity.created(location).body(createProductStatus);
     }
 
