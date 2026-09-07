@@ -67,7 +67,6 @@ RUN java -Djarmode=tools -jar target/app.jar extract --layers --destination targ
 # eclipse-temurin@sha256:99cede493dfd88720b610eb8077c8688d3cca50003d76d1d539b0efc8cca72b4.
 FROM eclipse-temurin:26.0.2_10-jre-ubi10-minimal AS final
 
-# FIX 1: Set a safe workdir so app files don't collide with the root filesystem (/)
 WORKDIR /app
 
 # Create a non-privileged user that the app will run under.
@@ -94,4 +93,5 @@ COPY --from=extract /build/target/extracted/application/ ./
 
 EXPOSE 8080
 
-ENTRYPOINT [ "java", "org.springframework.boot.loader.launch.JarLauncher" ]
+# ENTRYPOINT [ "java", "org.springframework.boot.loader.launch.JarLauncher" ]
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
