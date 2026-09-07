@@ -4,6 +4,7 @@ import com.tidyup.StockService.service.ProductStatusService;
 import com.tidyup.StockService.domain.product.dto.DetailedProductStatusDTO;
 import com.tidyup.StockService.domain.product.dto.ProductStatusDTO;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -55,7 +56,7 @@ public class ProductStatusController {
 
     @Transactional
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteProductStatus(@PathVariable Long id) {
+    public ResponseEntity<Null> deleteProductStatus(@PathVariable Long id) {
         productStatusService.delete(id);
         return ResponseEntity.noContent().build();
     }

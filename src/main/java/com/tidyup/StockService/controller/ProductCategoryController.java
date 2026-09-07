@@ -4,6 +4,7 @@ import com.tidyup.StockService.service.ProductCategoryService;
 import com.tidyup.StockService.domain.product.dto.DetailedProductCategoryDTO;
 import com.tidyup.StockService.domain.product.dto.ProductCategoryDTO;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -54,7 +55,7 @@ public class ProductCategoryController {
 
     @Transactional
     @DeleteMapping("/{id}")
-    private ResponseEntity deleteProductCategory(@PathVariable Long id) {
+    private ResponseEntity<Null> deleteProductCategory(@PathVariable Long id) {
         categoryService.delete(id);
         return ResponseEntity.noContent().build();
     }

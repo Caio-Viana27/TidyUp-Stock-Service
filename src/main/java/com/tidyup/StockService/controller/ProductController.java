@@ -4,6 +4,7 @@ import com.tidyup.StockService.service.ProductService;
 import com.tidyup.StockService.domain.product.dto.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -66,9 +67,16 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    @Transactional
+    @PatchMapping("/{id}/update-inventory")
+    public ResponseEntity<ProductUpdatedDTO> updateProductInventory(@PathVariable UUID id, @RequestBody @Valid UpdateProductInventoryDTO dto) {
+        ProductUpdatedDTO productUpdatedDTO = productService.update(id, dto);
+        return ResponseEntity.ok(productUpdatedDTO);
+    }
+
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity deleteProduct(@PathVariable UUID id) {
+    public ResponseEntity<Null> deleteProduct(@PathVariable UUID id) {
         productService.delete(id);
         return ResponseEntity.noContent().build();
     }

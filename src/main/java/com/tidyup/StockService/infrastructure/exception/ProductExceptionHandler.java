@@ -44,4 +44,9 @@ public class ProductExceptionHandler {
     public ResponseEntity<ErrorMessage> handleEntityDoesNotMatchException(EntityDoesNotMatchException exception) {
         return ResponseEntity.badRequest().body(new ErrorMessage("", exception.getMessage()));
     }
+
+    @ExceptionHandler(InvalidNewProductInventoryValueException.class)
+    public ResponseEntity<InvalidInventoryMessage> handleInvalidNewProductInventoryValueException(InvalidNewProductInventoryValueException e) {
+        return ResponseEntity.badRequest().body(new InvalidInventoryMessage(e.getMessage(), e.getProductId(), e.getCurrentInventory(), e.getRequestedAmount()));
+    }
 }
