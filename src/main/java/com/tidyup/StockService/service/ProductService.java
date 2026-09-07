@@ -76,6 +76,16 @@ public class ProductService {
         return new ProductUpdatedDTO(product);
     }
 
+    public ProductUpdatedDTO update(UUID id, UpdateProductInventoryDTO dto) {
+        Optional<Product> optional = productRepository.findById(id);
+        if (optional.isEmpty())
+            throw new EntityDoesNotExistException("Product with id: " + id + " doesn't exist!");
+        Product product = optional.get();
+        product.setNewInventory(dto.requestedAmount());
+        product = productRepository.saveAndFlush(product);
+        return new ProductUpdatedDTO(product);
+    }
+
     public void delete(UUID id) {
         productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         productRepository.deleteById(id);

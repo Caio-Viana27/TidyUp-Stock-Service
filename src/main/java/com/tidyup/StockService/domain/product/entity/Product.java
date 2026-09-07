@@ -2,6 +2,7 @@ package com.tidyup.StockService.domain.product.entity;
 
 import com.tidyup.StockService.domain.product.dto.CreateProductDTO;
 import com.tidyup.StockService.domain.product.dto.UpdateProductDTO;
+import com.tidyup.StockService.infrastructure.exception.InvalidNewProductInventoryValueException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,9 +52,8 @@ public class Product {
     private Brand brand;
 
     @ManyToMany
-    @JoinTable(name = "PRODUCT_CATEGORY",
-               joinColumns = {@JoinColumn(name = "PRODUCT_ID")},
-               inverseJoinColumns = {@JoinColumn(name = "CATEGORY_ID")})
+    @JoinTable(name = "PRODUCT_CATEGORY", joinColumns = { @JoinColumn(name = "PRODUCT_ID") }, inverseJoinColumns = {
+            @JoinColumn(name = "CATEGORY_ID") })
     private List<ProductCategory> productCategoryList;
 
     @Column(name = "CREATED_AT")
@@ -95,5 +95,13 @@ public class Product {
     public void update(List<ProductCategory> newCategoryList) {
         this.productCategoryList = newCategoryList;
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public void setNewInventory(int requestedAmount) {
+        int newValue = this.inventory - requestedAmount;
+        if (newValue < 0)
+            throw new InvalidNewProductInventoryValueException("Product inventory must not be less than zero", this.id,
+                    this.inventory, requestedAmount);
+        this.inventory = newValue;
     }
 }

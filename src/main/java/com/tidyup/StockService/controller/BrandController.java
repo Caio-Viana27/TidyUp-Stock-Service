@@ -4,6 +4,7 @@ import com.tidyup.StockService.service.BrandService;
 import com.tidyup.StockService.domain.product.dto.BrandDTO;
 import com.tidyup.StockService.domain.product.dto.DetailedBrandDTO;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -55,7 +56,7 @@ public class BrandController {
 
     @Transactional
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteBrand(@PathVariable Long id) {
+    public ResponseEntity<Null> deleteBrand(@PathVariable Long id) {
         brandService.delete(id);
         return ResponseEntity.noContent().build();
     }
